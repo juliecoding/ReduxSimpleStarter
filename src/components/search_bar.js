@@ -12,15 +12,20 @@ class SearchBar extends Component { //Functional components do not have state; o
 
   render() {
     return (
-      <div>
+      <div className="search-bar">
         <input
           value={this.state.term}
-          onChange={event => this.setState({ term: event.target.value })} /> {/*For virtually the rest of the app, we use this.setState to change state. */} {/* Value of the input : {this.state.term} Wrap JS variables with curly braces */}
+          onChange={event => this.onInputChange(event.target.value)} /> {/*For virtually the rest of the app, we use this.setState to change state. */} {/* Value of the input : {this.state.term} Wrap JS variables with curly braces */}
       </div>
     )
   } // onInputChange(event) {// Done as an arrow function above, but name created like so: generally 'handle'
   // or 'on', the name of the element you're watching for an event, the name of
   // the event itself   console.log(event.target.value); }
+
+  onInputChange(term) {
+    this.setState({ term })
+    this.props.onSearchTermChange(term)
+  }
 }
 
 export default SearchBar
